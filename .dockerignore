@@ -1,0 +1,37 @@
+# Version control & metadata
+.git
+.gitignore
+.dockerignore
+
+# Environment files and secrets (CRITICAL)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+
+# Local dependencies and build artifacts
+node_modules
+dist
+build
+.cache
+.tmp
+.next
+
+# Database dumps & local storage
+postgres_data
+*.db
+*.sqlite
+
+# System and editor files
+*.log
+.pnpm-store
+.github
+.idea
+.vscode
+.DS_Store
+.strapi
+.strapi-updater.json
+docs
+*.md
