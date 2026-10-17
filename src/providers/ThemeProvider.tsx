@@ -7,9 +7,9 @@ import {
   useState,
   ReactNode,
   useMemo,
-  useSyncExternalStore,
   useCallback
 } from 'react';
+
 import {useIsHydrated} from "@/hooks/useIsHydrated";
 
 type Theme = 'light' | 'dark';

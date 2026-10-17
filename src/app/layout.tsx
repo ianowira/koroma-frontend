@@ -1,10 +1,13 @@
-import type { Metadata } from 'next';
 import { Inter, DM_Sans } from 'next/font/google';
-import { ThemeProvider } from '@/providers/ThemeProvider';
-import { Navbar } from '@/components/organisms/Navbar';
-import { Footer } from '@/components/organisms/Footer';
-import './globals.css';
 import React from "react";
+
+import type { Metadata } from 'next';
+
+import { Footer } from '@/components/organisms/Footer';
+import { Navbar } from '@/components/organisms/Navbar';
+import { ThemeProvider } from '@/providers/ThemeProvider';
+
+import './globals.css';
 
 const inter = Inter({
   variable: '--font-inter',

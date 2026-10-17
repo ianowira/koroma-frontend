@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+
 import { ThemeToggle } from '@/components/atoms/ThemeToggle';
 
 const navLinks = [

@@ -1,7 +1,9 @@
-import type { Metadata } from 'next';
-import { getProducts } from '@/lib/api';
-import { ProductsFilter } from '@/components/organisms/ProductsFilter';
 import Link from 'next/link';
+
+import type { Metadata } from 'next';
+
+import { ProductsFilter } from '@/components/organisms/ProductsFilter';
+import { getProducts } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: 'Products',

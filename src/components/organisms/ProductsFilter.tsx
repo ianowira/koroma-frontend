@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Product } from '@/types/strapi';
+
 import { ProductCard } from '@/components/molecules/ProductCard';
+import { Product } from '@/types/strapi';
 
 const ALL = 'All';
 

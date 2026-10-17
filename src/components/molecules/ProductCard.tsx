@@ -1,10 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
-import { Product } from '@/types/strapi';
+import Link from 'next/link';
+
 import { Badge, BadgeVariant } from '@/components/atoms/Badge';
 import { BotanicalTagList } from '@/components/molecules/BotanicalTagList';
+import { Product } from '@/types/strapi';
 
 const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? 'http://localhost:1337';
 

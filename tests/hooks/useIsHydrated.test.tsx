@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
+import { describe, it, expect } from 'vitest';
+
 import { useIsHydrated } from '@/hooks/useIsHydrated';
 
 describe('useIsHydrated', () => {

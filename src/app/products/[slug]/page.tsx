@@ -1,10 +1,12 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
-import { getProductBySlug } from '@/lib/api';
-import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
+import type { Metadata } from 'next';
+
 import { Badge, BadgeVariant } from '@/components/atoms/Badge';
 import { BotanicalTagList } from '@/components/molecules/BotanicalTagList';
+import { getProductBySlug } from '@/lib/api';
 
 const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? 'http://localhost:1337';
 
