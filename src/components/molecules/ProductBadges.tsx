@@ -10,7 +10,7 @@ interface ProductBadgesProps {
 
 export function ProductBadges({
                                   categoryName,
-                                  catVariant = 'default',
+                                  catVariant = 'emerald',
                                   isGeneric,
                               }: Readonly<ProductBadgesProps>) {
     return (
