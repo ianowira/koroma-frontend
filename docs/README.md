@@ -8,7 +8,8 @@ Welcome to the frontend documentation suite for the Next.js 16 web application.
 
 | Document | Purpose |
 |---|---|
-| 🎨 [**`FRONTEND_ARCHITECTURE.md`**](./FRONTEND_ARCHITECTURE.md) | Next.js 16 App Router setup, React 19 patterns, dual-theme engine (CSS Custom Variables), component hierarchy (Atomic Design), and API client. |
+| 🎨 [**`COLOR_SYSTEM.md`**](./COLOR_SYSTEM.md) | Official Tailwind CSS v4 design tokens catalog, dual-theme palette reference, and developer/agent implementation rules. |
+| 🏛️ [**`FRONTEND_ARCHITECTURE.md`**](./FRONTEND_ARCHITECTURE.md) | Next.js 16 App Router setup, React 19 patterns, dual-theme engine (CSS Custom Variables), component hierarchy (Atomic Design), and API client. |
 
 ---
 

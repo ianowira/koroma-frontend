@@ -13,9 +13,9 @@ interface ButtonProps {
 }
 
 const variants = {
-  primary: 'bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5',
-  outline: 'border border-emerald-500/40 hover:border-emerald-500 text-emerald-400 hover:text-white hover:bg-emerald-500/10',
-  ghost:   'text-slate-300 hover:text-white hover:bg-white/5',
+  primary: 'bg-accent-btn hover:bg-accent-btn-hover text-on-accent shadow-accent hover:shadow-accent-lg hover:-translate-y-0.5',
+  outline: 'border border-border-accent hover:border-accent text-accent hover:bg-accent-bg',
+  ghost:   'text-secondary hover:text-primary hover:bg-card-hover',
 };
 
 const sizes = {
@@ -26,7 +26,7 @@ const sizes = {
 
 const base =
   'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 ' +
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ' +
   'disabled:opacity-50 disabled:cursor-not-allowed';
 
 export function Button({

@@ -2,7 +2,7 @@ import next from "eslint-config-next";
 import importX from "eslint-plugin-import-x";
 import unusedImports from "eslint-plugin-unused-imports";
 
-const eslintConfig = [
+export default [
   // Native Next.js flat config (eslint-config-next 16.x provides flat config by default)
   ...next,
 
@@ -17,6 +17,9 @@ const eslintConfig = [
     rules: {
       // 1. Prevent raw console.log (allow warn, error, info)
       "no-console": ["error", { allow: ["warn", "error", "info"] }],
+
+      // Allow anonymous default exports (e.g. config files)
+      "import/no-anonymous-default-export": "off",
 
       // 2. Remove unused imports
       "@typescript-eslint/no-unused-vars": "off",
@@ -53,5 +56,3 @@ const eslintConfig = [
     },
   },
 ];
-
-export default eslintConfig;

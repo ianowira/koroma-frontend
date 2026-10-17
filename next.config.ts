@@ -16,7 +16,7 @@ const getStrapiRemotePattern = () => {
       pathname: "/uploads/**",
     };
   } catch (error) {
-    logger.error("Invalid STRAPI_API_URL provided:", error);
+    console.error("Invalid STRAPI_API_URL provided:", error);
     return null;
   }
 };

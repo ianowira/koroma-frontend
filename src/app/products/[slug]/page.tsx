@@ -34,23 +34,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function InfoCard({ title, content, icon }: { title: string; content: string; icon: React.ReactNode }) {
   return (
     <div
-      className="rounded-2xl p-6 transition-all duration-200"
-      style={{
-        background: 'var(--bg-info-card)',
-        border: '1px solid var(--border-default)',
-        boxShadow: 'var(--card-shadow)',
-      }}
+      className="rounded-2xl p-6 transition-all duration-200 bg-info-card border border-border shadow-card"
     >
       <div className="flex items-center gap-3 mb-3">
         <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-          style={{ background: 'var(--bg-botanical-icon)', color: 'var(--accent)' }}
+          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-botanical-icon text-accent"
         >
           {icon}
         </div>
-        <h2 className="font-bold text-sm uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>{title}</h2>
+        <h2 className="font-bold text-sm uppercase tracking-wider text-primary">{title}</h2>
       </div>
-      <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: 'var(--text-secondary)' }}>{content}</p>
+      <p className="text-sm leading-relaxed whitespace-pre-line text-secondary">{content}</p>
     </div>
   );
 }
@@ -84,8 +78,7 @@ export default async function ProductDetailPage({ params }: Props) {
           <Link
             href="/products"
             id="product-back-link"
-            className="inline-flex items-center gap-2 text-sm transition-colors mb-8 group"
-            style={{ color: 'var(--text-muted)' }}
+            className="inline-flex items-center gap-2 text-sm transition-colors mb-8 group text-muted hover:text-primary"
           >
             <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -104,7 +97,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
 
           {/* Product name */}
-          <h1 className="font-display font-black text-5xl lg:text-6xl leading-tight mb-5" style={{ color: 'var(--text-primary)' }}>
+          <h1 className="font-display font-black text-5xl lg:text-6xl leading-tight mb-5 text-primary">
             {name}
           </h1>
 
@@ -119,8 +112,7 @@ export default async function ProductDetailPage({ params }: Props) {
       {coverImgUrl && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-8">
           <div
-            className="relative w-full h-72 lg:h-96 rounded-2xl overflow-hidden"
-            style={{ border: '1px solid var(--border-default)', boxShadow: 'var(--card-shadow-hover)' }}
+            className="relative w-full h-72 lg:h-96 rounded-2xl overflow-hidden border border-border shadow-card-hover"
           >
             <Image
               src={coverImgUrl}
@@ -130,7 +122,7 @@ export default async function ProductDetailPage({ params }: Props) {
               priority
               sizes="(max-width: 896px) 100vw, 896px"
             />
-            <div className="absolute inset-0" style={{ background: 'var(--img-overlay-detail)' }} />
+            <div className="absolute inset-0 img-overlay-detail" />
           </div>
         </div>
       )}
@@ -175,59 +167,46 @@ export default async function ProductDetailPage({ params }: Props) {
           {/* Expected Outcome */}
           {outcome && (
             <div
-              className="rounded-2xl p-6"
-              style={{
-                background: 'var(--bg-outcome)',
-                border: '1px solid var(--border-outcome)',
-                boxShadow: 'var(--card-shadow)',
-              }}
+              className="rounded-2xl p-6 bg-outcome border border-border-outcome shadow-card"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ background: 'var(--bg-botanical-icon)', color: 'var(--accent)' }}
+                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-botanical-icon text-accent"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h2 className="font-bold text-sm uppercase tracking-wider" style={{ color: 'var(--accent)' }}>Expected Outcome</h2>
+                <h2 className="font-bold text-sm uppercase tracking-wider text-accent">Expected Outcome</h2>
               </div>
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{outcome}</p>
+              <p className="text-sm leading-relaxed text-primary">{outcome}</p>
             </div>
           )}
 
           {/* Botanical Sources */}
           {botanicals && botanicals.length > 0 && (
             <div
-              className="rounded-2xl p-6"
-              style={{
-                background: 'var(--bg-info-card)',
-                border: '1px solid var(--border-default)',
-                boxShadow: 'var(--card-shadow)',
-              }}
+              className="rounded-2xl p-6 bg-info-card border border-border shadow-card"
             >
               <div className="flex items-center gap-3 mb-5">
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ background: 'var(--bg-botanical-icon)', color: 'var(--accent)' }}
+                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-botanical-icon text-accent"
                 >
                   <span className="text-sm">🌿</span>
                 </div>
-                <h2 className="font-bold text-sm uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>Botanical Sources</h2>
+                <h2 className="font-bold text-sm uppercase tracking-wider text-primary">Botanical Sources</h2>
               </div>
               <div className="grid sm:grid-cols-2 gap-3">
                 {botanicals.map((b) => (
                   <div
                     key={b.id}
-                    className="flex items-start gap-3 p-3 rounded-xl"
-                    style={{ background: 'var(--bg-outcome)', border: '1px solid var(--border-outcome)' }}
+                    className="flex items-start gap-3 p-3 rounded-xl bg-outcome border border-border-outcome"
                   >
-                    <span className="mt-0.5 text-lg shrink-0" style={{ color: 'var(--accent)' }}>🌱</span>
+                    <span className="mt-0.5 text-lg shrink-0 text-accent">🌱</span>
                     <div>
-                      <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{b.name}</p>
+                      <p className="text-sm font-semibold text-primary">{b.name}</p>
                       {b.scientificName && (
-                        <p className="text-xs italic mt-0.5" style={{ color: 'var(--text-muted)' }}>{b.scientificName}</p>
+                        <p className="text-xs italic mt-0.5 text-muted">{b.scientificName}</p>
                       )}
                     </div>
                   </div>
@@ -241,12 +220,7 @@ export default async function ProductDetailPage({ params }: Props) {
         <div className="mt-10">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
-            style={{
-              background: 'var(--bg-pill)',
-              border: '1px solid var(--border-default)',
-              color: 'var(--text-secondary)',
-            }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 bg-pill border border-border text-secondary hover:border-border-hover hover:text-primary"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />

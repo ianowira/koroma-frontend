@@ -27,8 +27,7 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      className="border-t mt-auto"
-      style={{ background: 'var(--bg-footer)', borderColor: 'var(--border-default)' }}
+      className="border-t mt-auto bg-footer border-border"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
@@ -37,55 +36,49 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3 mb-5 group">
               <div
-                className="w-9 h-9 rounded-xl flex items-center justify-center"
-                style={{ background: 'var(--accent-bg)', border: '1px solid var(--border-accent)' }}
+                className="w-9 h-9 rounded-xl flex items-center justify-center bg-accent-bg border border-border-accent"
               >
-                <span className="font-black text-base" style={{ color: 'var(--accent)' }}>K</span>
+                <span className="font-black text-base text-accent">K</span>
               </div>
               <div>
-                <p className="font-black text-sm tracking-widest leading-tight" style={{ color: 'var(--text-primary)' }}>KOROMA</p>
-                <p className="font-medium tracking-[0.22em] uppercase leading-tight" style={{ fontSize: '8px', color: 'var(--accent)' }}>
+                <p className="font-black text-sm tracking-widest leading-tight text-primary">KOROMA</p>
+                <p className="font-medium tracking-[0.22em] uppercase leading-tight text-[8px] text-accent">
                   Biopharmaceuticals
                 </p>
               </div>
             </Link>
 
-            <p className="text-sm leading-relaxed max-w-xs mb-2" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-sm leading-relaxed max-w-xs mb-2 text-secondary">
               Manufacturers and distributors of pharmaceutical products derived entirely from natural botanical sources. Rigorously tested. Certified safe.
             </p>
-            <p className="text-xs mb-6" style={{ color: 'var(--text-muted)' }}>Reg: 2026/252880/07 · South Africa</p>
+            <p className="text-xs mb-6 text-muted">Reg: 2026/252880/07 · South Africa</p>
 
             {/* Certification badges */}
             <div className="flex flex-wrap gap-3">
               <div
-                className="flex items-center gap-2 px-3 py-2 rounded-lg"
-                style={{ background: 'var(--bg-cert-sabs)', border: '1px solid var(--border-cert-sabs)', color: 'var(--gold-text)' }}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-cert-sabs border border-border-cert-sabs text-gold-text"
               >
                 <CheckIcon />
-                <span className="text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>SABS Certified</span>
+                <span className="text-xs font-medium text-secondary">SABS Certified</span>
               </div>
               <div
-                className="flex items-center gap-2 px-3 py-2 rounded-lg"
-                style={{ background: 'var(--bg-cert-sahpra)', border: '1px solid var(--border-cert-sahpra)', color: 'var(--accent)' }}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-cert-sahpra border border-border-cert-sahpra text-accent"
               >
                 <CheckIcon />
-                <span className="text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>SAHPRA Certified</span>
+                <span className="text-xs font-medium text-secondary">SAHPRA Certified</span>
               </div>
             </div>
           </div>
 
           {/* ── Products ── */}
           <div>
-            <h3 className="text-xs font-bold mb-5 tracking-[0.15em] uppercase" style={{ color: 'var(--text-primary)' }}>Products</h3>
+            <h3 className="text-xs font-bold mb-5 tracking-[0.15em] uppercase text-primary">Products</h3>
             <ul className="space-y-2.5">
               {productLinks.map((p) => (
                 <li key={p.label}>
                   <Link
                     href={p.href}
-                    className="text-sm transition-colors duration-200"
-                    style={{ color: 'var(--text-muted)' }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--accent)'; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-muted)'; }}
+                    className="text-sm transition-colors duration-200 text-muted hover:text-accent"
                   >
                     {p.label}
                   </Link>
@@ -96,16 +89,13 @@ export function Footer() {
 
           {/* ── Company ── */}
           <div>
-            <h3 className="text-xs font-bold mb-5 tracking-[0.15em] uppercase" style={{ color: 'var(--text-primary)' }}>Company</h3>
+            <h3 className="text-xs font-bold mb-5 tracking-[0.15em] uppercase text-primary">Company</h3>
             <ul className="space-y-2.5">
               {companyLinks.map((l) => (
                 <li key={l.label}>
                   <Link
                     href={l.href}
-                    className="text-sm transition-colors duration-200"
-                    style={{ color: 'var(--text-muted)' }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--accent)'; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-muted)'; }}
+                    className="text-sm transition-colors duration-200 text-muted hover:text-accent"
                   >
                     {l.label}
                   </Link>
@@ -117,13 +107,12 @@ export function Footer() {
 
         {/* ── Bottom bar ── */}
         <div
-          className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 border-t"
-          style={{ borderColor: 'var(--border-default)' }}
+          className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-border"
         >
-          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+          <p className="text-sm text-muted">
             © 2026 Koroma Biopharmaceuticals (Pty) Ltd. All rights reserved.
           </p>
-          <p className="text-xs italic" style={{ color: 'var(--text-subtle)' }}>Natural. Certified. Effective.</p>
+          <p className="text-xs italic text-subtle">Natural. Certified. Effective.</p>
         </div>
       </div>
     </footer>

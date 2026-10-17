@@ -155,6 +155,78 @@
 @theme {
   --font-sans:    var(--font-inter,    'Inter',    system-ui, sans-serif);
   --font-display: var(--font-dm-sans,  'DM Sans',  system-ui, sans-serif);
+
+  /* ── Page & Layout Surfaces ── */
+  --color-page:          var(--bg-page);
+  --color-page-deep:     var(--bg-page-deep);
+  --color-footer:        var(--bg-footer);
+  --color-section-alt:   var(--bg-section-alt);
+  --color-trust-strip:   var(--bg-trust-strip);
+  --color-nav-scrolled:  var(--bg-nav-scrolled);
+
+  /* ── Component Surfaces ── */
+  --color-card:          var(--bg-card);
+  --color-card-hover:    var(--bg-card-hover);
+  --color-input:         var(--bg-input);
+  --color-toggle:        var(--bg-toggle);
+  --color-pill:          var(--bg-pill);
+  --color-stat-card:     var(--bg-stat-card);
+  --color-empty-icon:    var(--bg-empty-icon);
+  --color-info-card:     var(--bg-info-card);
+  --color-botanical-icon:var(--bg-botanical-icon);
+  --color-outcome:       var(--bg-outcome);
+  --color-cert-sabs:     var(--bg-cert-sabs);
+  --color-cert-sahpra:   var(--bg-cert-sahpra);
+  --color-filter-active: var(--bg-filter-active);
+  --color-cta-link:      var(--bg-cta-link);
+
+  /* ── Borders ── */
+  --color-border:              var(--border-default);
+  --color-border-hover:        var(--border-hover);
+  --color-border-accent:       var(--border-accent);
+  --color-border-input:        var(--border-input);
+  --color-border-outcome:      var(--border-outcome);
+  --color-border-cert-sabs:    var(--border-cert-sabs);
+  --color-border-cert-sahpra:  var(--border-cert-sahpra);
+  --color-border-filter-active:var(--border-filter-active);
+  --color-border-dashed:       var(--border-dashed);
+  --color-border-cta-link:     var(--border-cta-link);
+
+  /* ── Typography & Text ── */
+  --color-primary:       var(--text-primary);
+  --color-secondary:     var(--text-secondary);
+  --color-muted:         var(--text-muted);
+  --color-subtle:        var(--text-subtle);
+  --color-on-accent:     var(--text-on-accent);
+
+  /* Explicit aliases for developer convenience */
+  --color-text-primary:   var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted:     var(--text-muted);
+  --color-text-subtle:    var(--text-subtle);
+  --color-text-on-accent: var(--text-on-accent);
+
+  /* ── Botanical Accent (Green / Bioluminescent Mint) ── */
+  --color-accent:           var(--accent);
+  --color-accent-hover:     var(--accent-hover);
+  --color-accent-light:     var(--accent-light);
+  --color-accent-bg:        var(--accent-bg);
+  --color-accent-shadow:    var(--accent-shadow);
+  --color-accent-btn:       var(--accent-btn-bg);
+  --color-accent-btn-hover: var(--accent-btn-hover);
+
+  /* ── Gold / Amber ── */
+  --color-gold:      var(--gold);
+  --color-gold-text: var(--gold-text);
+  --color-gold-bg:   var(--gold-bg);
+
+  /* ── Shadows ── */
+  --shadow-card:        var(--card-shadow);
+  --shadow-card-hover:  var(--card-shadow-hover);
+  --shadow-accent:      0 4px 15px var(--accent-shadow);
+  --shadow-accent-lg:   0 6px 20px var(--accent-shadow);
+  --shadow-accent-hero: 0 6px 24px var(--accent-shadow);
+  --shadow-accent-cta:  0 8px 30px var(--accent-shadow);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -261,6 +333,21 @@ body {
 .dot-grid {
   background-image: radial-gradient(var(--border-default) 1px, transparent 1px);
   background-size: 30px 30px;
+}
+.img-overlay-card {
+  background: var(--img-overlay-card);
+}
+.img-overlay-detail {
+  background: var(--img-overlay-detail);
+}
+.bg-orb-accent {
+  background: radial-gradient(circle, var(--accent-bg) 0%, transparent 70%);
+}
+.bg-orb-indigo {
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.04) 0%, transparent 70%);
+}
+.bg-banner-cta {
+  background: linear-gradient(135deg, var(--accent-bg) 0%, rgba(79, 70, 229, 0.03) 50%, var(--gold-bg) 100%);
 }
 
 /* ══════════════════════════════════════════════════════════════

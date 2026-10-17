@@ -14,26 +14,32 @@ This document details the Next.js 16 App Router architecture, component design s
 
 ---
 
-## 🎨 2. Dual-Theme Design System
+## 🎨 2. Dual-Theme Design System & Tailwind Tokens
 
-The application uses CSS Custom Properties defined in [`src/app/globals.css`](file:///Users/ian/Workspace/Apps/koroma_biopharmaceuticals_app/frontend/src/app/globals.css) to support instant switching between **Botanical Light Theme** (default) and **Bio-luminescent Dark Theme**.
+The application uses CSS Custom Properties integrated into **Tailwind CSS v4's `@theme` directive** in [`src/app/globals.css`](file:///Users/ian/Workspace/Apps/koroma_biopharmaceuticals_app/frontend/src/app/globals.css) to support instant switching between **Botanical Light Theme** (default) and **Bio-luminescent Dark Theme**.
 
-### Theme Tokens Mapping
+All components consume semantic Tailwind tokens directly (e.g. `bg-card`, `text-primary`, `bg-accent`, `border-border`, `shadow-card`) rather than raw hex or arbitrary values.
 
-| Token Name | Light Theme Purpose | Dark Theme Purpose |
-|---|---|---|
-| `--bg-page` | `#F5F3EE` (Warm botanical parchment) | `#040C1A` (Deep navy blue) |
-| `--bg-card` | `rgba(255, 255, 255, 0.9)` (Elevated white card) | `rgba(13, 30, 53, 0.55)` (Glassmorphic dark card) |
-| `--text-primary` | `#1A2016` (Deep charcoal green) | `#EEF2FF` (Crisp white) |
-| `--text-secondary` | `#4E6240` (Muted herbal green) | `#94a3b8` (Slate secondary) |
-| `--accent` | `#2D6A4F` (Forest green accent) | `#00C896` (Emerald bioluminescent accent) |
-| `--accent-shadow` | `rgba(45, 106, 79, 0.22)` | `rgba(0, 200, 150, 0.28)` |
-| `--gold` | `#A0692E` (Warm amber gold) | `#F5C842` (Bright yellow gold) |
-| `--card-shadow` | `0 2px 16px rgba(0,0,0,0.07)` | `none` (Uses backdrop-filter blur) |
+*For full specifications, refer to [**Design System & Color Tokens Guide**](./COLOR_SYSTEM.md).*
+
+### Core Tokens Summary
+
+| Tailwind Utility | Theme Property | Light Theme Value | Dark Theme Value | Purpose |
+|---|---|---|---|---|
+| `bg-page` | `--color-page` | `#F5F3EE` | `#040C1A` | Warm botanical parchment / Deep navy canvas |
+| `bg-card` | `--color-card` | `rgba(255, 255, 255, 0.9)` | `rgba(13, 30, 53, 0.55)` | Surface card background |
+| `border-border` | `--color-border` | `rgba(0, 0, 0, 0.09)` | `rgba(255, 255, 255, 0.08)` | Default subtle borders |
+| `text-primary` | `--color-primary` | `#1A2016` | `#EEF2FF` | High-contrast primary typography |
+| `text-secondary` | `--color-secondary` | `#4E6240` | `#94a3b8` | Muted herbal green / Slate body copy |
+| `text-muted` | `--color-muted` | `#7D9470` | `#64748b` | Captions, subtle metadata |
+| `bg-accent` / `text-accent` | `--color-accent` | `#2D6A4F` | `#00C896` | Forest green / Bioluminescent mint brand accent |
+| `bg-accent-btn` | `--color-accent-btn` | `#2D6A4F` | `#00C896` | Solid primary action button |
+| `text-gold` / `bg-gold` | `--color-gold` | `#A0692E` | `#F5C842` | Warm amber / Yellow gold certification accents |
+| `shadow-card` | `--shadow-card` | `0 2px 16px rgba(0,0,0,0.07)` | `none` (Glassmorphic blur) | Card elevation shadow |
 
 ### Theme Switcher Architecture
 - **Provider**: [`src/providers/ThemeProvider.tsx`](file:///Users/ian/Workspace/Apps/koroma_biopharmaceuticals_app/frontend/src/providers/ThemeProvider.tsx) wraps the app inside `RootLayout`. It reads the saved preference from `localStorage.getItem('koroma-theme')` and sets the `data-theme` attribute on `document.documentElement`.
-- **Toggle Component**: [`src/components/atoms/ThemeToggle.tsx`](file:///Users/ian/Workspace/Apps/koroma_biopharmaceuticals_app/frontend/src/components/atoms/ThemeToggle.tsx) renders an animated slider button in the Navbar that switches between Sun (Light) and Moon (Dark) icons.
+- **Toggle Component**: [`src/components/atoms/ThemeToggle.tsx`](file:///Users/ian/Workspace/Apps/koroma_biopharmaceuticals_app/frontend/src/components/atoms/ThemeToggle.tsx) renders an animated slider button in the Navbar utilizing token classes `bg-accent-bg`, `border-border-accent`, and `bg-accent text-on-accent`.
 
 ---
 

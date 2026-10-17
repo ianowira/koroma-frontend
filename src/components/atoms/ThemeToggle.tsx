@@ -20,25 +20,20 @@ export function ThemeToggle() {
             {/* Track */}
             <div
                 className={cn(
-                    "relative w-[38px] h-[22px] rounded-full transition-all duration-300 border",
-                    isDark
-                        ? "bg-[#00C896]/30 border-[#00C896]/40"
-                        : "bg-[#2D6A4F]/15 border-[#2D6A4F]/25"
+                    "relative w-[38px] h-[22px] rounded-full transition-all duration-300 border bg-accent-bg border-border-accent"
                 )}
             >
                 {/* Thumb */}
                 <span
                     className={cn(
-                        "absolute top-0.5 flex items-center justify-center w-4 h-4 rounded-full transition-all duration-300",
-                        isDark
-                            ? "left-[calc(100%-18px)] bg-[#00C896]"
-                            : "left-[2px] bg-[#2D6A4F]"
+                        "absolute top-0.5 flex items-center justify-center w-4 h-4 rounded-full transition-all duration-300 bg-accent text-on-accent",
+                        isDark ? "left-[calc(100%-18px)]" : "left-[2px]"
                     )}
                 >
           {isDark ? (
-              <Moon width={8} height={8} fill="white" />
+              <Moon width={8} height={8} fill="currentColor" />
           ) : (
-              <Sun width={8} height={8} fill="white" />
+              <Sun width={8} height={8} fill="currentColor" />
           )}
         </span>
             </div>

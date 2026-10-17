@@ -19,11 +19,18 @@ Create a top-level context file (e.g., `frontend/ai-design-system.md` or `CLAUDE
    - Templates: Layout structures page components slot into.
    - Pages: Route components that fetch data and populate Templates.
 
-2. Design System Tokens:
-   - Modern, clean, minimal aesthetic.
-   - Primary: Deep Slate (`#0f172a`), Accent: Emerald/Sage (`#059669`).
-   - Border Radius: Rounded-lg (`0.5rem`) default.
-   - Spacing: 8-point grid scale (`p-2`, `p-4`, `p-8`).
+2. Design System Tokens & Color Rules (STRICT):
+   - Modern, clean, minimal botanical aesthetic with dual-theme support.
+   - Use Tailwind CSS v4 design tokens defined in `src/app/globals.css` (see `docs/COLOR_SYSTEM.md`).
+   - Surfaces: `bg-page`, `bg-card`, `bg-section-alt`, `bg-footer`, `bg-input`, `bg-pill`, `bg-outcome`, `bg-botanical-icon`.
+   - Typography: `text-primary`, `text-secondary`, `text-muted`, `text-subtle`, `text-on-accent`.
+   - Accent & Brand: `bg-accent`, `text-accent`, `bg-accent-btn`, `bg-accent-bg`, `text-accent-light`.
+   - Certifications: `text-gold`, `bg-cert-sabs`, `bg-cert-sahpra`.
+   - Borders: `border-border`, `border-border-accent`, `border-border-input`.
+   - Shadows: `shadow-card`, `shadow-card-hover`, `shadow-accent`.
+   - FORBIDDEN: Arbitrary hex/rgba classes (e.g. `bg-[#...]`), inline color styles (`style={{ color: 'var(...)' }}`), and imperative mouse hover listeners. Always use declarative Tailwind tokens.
+   - Border Radius: Rounded-xl (`rounded-xl` / `rounded-2xl`).
+   - Spacing: 8-point grid scale (`p-2`, `p-4`, `p-6`, `p-8`).
 
 3. Data Fetching & Strapi Integration:
    - Fetch using Next.js App Router Server Components / Fetch API.
@@ -130,9 +137,9 @@ import { BotanicalTagList } from '@/components/molecules/BotanicalTagList';
 
 export function ProductCard({ product }: { product: any }) {
   return (
-    <div className="border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition">
-      <h3 className="text-lg font-semibold text-slate-900">{product.title}</h3>
-      <p className="text-slate-600 text-sm mt-1">{product.description}</p>
+    <div className="bg-card border border-border hover:border-border-hover rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all">
+      <h3 className="text-lg font-bold text-primary">{product.title}</h3>
+      <p className="text-secondary text-sm mt-1">{product.description}</p>
       <BotanicalTagList items={product.botanicals} />
     </div>
   );
