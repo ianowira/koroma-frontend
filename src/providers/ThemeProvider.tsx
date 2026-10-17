@@ -1,6 +1,16 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+  useMemo,
+  useSyncExternalStore,
+  useCallback
+} from 'react';
+import {useIsHydrated} from "@/hooks/useIsHydrated";
 
 type Theme = 'light' | 'dark';
 
@@ -11,29 +21,34 @@ interface ThemeContextValue {
 
 const ThemeCtx = createContext<ThemeContextValue>({ theme: 'light', toggle: () => {} });
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
-  const [mounted, setMounted] = useState(false);
+export function ThemeProvider({ children }: Readonly<{ children: ReactNode }>) {
+  const isHydrated = useIsHydrated();
+
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'light';
+    return (localStorage.getItem('koroma-theme') as Theme) ?? 'light';
+  });
 
   useEffect(() => {
-    const stored = (localStorage.getItem('koroma-theme') as Theme) ?? 'light';
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setTheme(stored);
-    document.documentElement.setAttribute('data-theme', stored);
-    setMounted(true);
+    // Keep DOM dataset synchronized with the current theme state
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
+  const toggle = useCallback(() => {
+    setTheme((prevTheme) => {
+      const next: Theme = prevTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('koroma-theme', next);
+      document.documentElement.dataset.theme = next;
+      return next;
+    });
   }, []);
 
-  const toggle = () => {
-    const next: Theme = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    localStorage.setItem('koroma-theme', next);
-    document.documentElement.setAttribute('data-theme', next);
-  };
+  const ProviderValue = useMemo(() => ({ theme, toggle }), [theme, toggle]);
 
-  // Prevent flash — don't render children until theme is resolved
-  if (!mounted) return null;
+  // Prevent flash — don't render children until hydrated on client
+  if (!isHydrated) return null;
 
-  return <ThemeCtx.Provider value={{ theme, toggle }}>{children}</ThemeCtx.Provider>;
+  return <ThemeCtx.Provider value={ProviderValue}>{children}</ThemeCtx.Provider>;
 }
 
 export const useTheme = () => useContext(ThemeCtx);
