@@ -18,7 +18,7 @@ const variants: Record<BadgeVariant, string> = {
   sky:     'bg-sky-500/15 text-sky-800 dark:text-sky-300 border-sky-500/30',
 };
 
-export function Badge({ children, variant = 'emerald', className = '' }: BadgeProps) {
+export function Badge({ children, variant = 'emerald', className = '' }: Readonly<BadgeProps>) {
   return (
     <span
       className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border ${variants[variant]} ${className}`}
