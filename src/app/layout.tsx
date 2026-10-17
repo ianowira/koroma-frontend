@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     'SAHPRA certified', 'South Africa', 'botanical medicine',
     'EmiGlow', 'Fungizuia', 'Obellite', 'Cardiollite',
   ],
+  icons: {
+    icon: '/favicon.svg',
+  },
   robots: { index: true, follow: true },
 };
 
