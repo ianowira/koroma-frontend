@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/ianowira/koroma-frontend/compare/koroma-frontend-v0.4.0...koroma-frontend-v0.5.0) (2026-10-17)
+
+
+### Features
+
+* add typecheck to project pre-commit ([e877c00](https://github.com/ianowira/koroma-frontend/commit/e877c00639a59e092ddad980387fcf8319058bfb))
+
 ## [0.4.0](https://github.com/ianowira/koroma-frontend/compare/koroma-frontend-v0.3.0...koroma-frontend-v0.4.0) (2026-10-17)
 
 
