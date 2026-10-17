@@ -1,14 +1,21 @@
+import {CheckIcon} from "lucide-react";
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import type { Metadata } from 'next';
 
-import { Badge, BadgeVariant } from '@/components/atoms/Badge';
+import {BackCta} from "@/components/atoms/BackCta";
+import {BackLink} from "@/components/atoms/BackLink";
+import {DocumentTextIcon} from "@/components/atoms/icons/DocumentTextIcon";
+import {FlaskIcon} from "@/components/atoms/icons/FlaskIcon";
+import {LightbulbIcon} from "@/components/atoms/icons/LightbulbIcon";
 import { BotanicalTagList } from '@/components/molecules/BotanicalTagList';
+import { InfoCard } from "@/components/molecules/InfoCard";
+import {ProductBadges} from "@/components/molecules/ProductBadges";
 import { getProductBySlug } from '@/lib/api';
+import {getStrapiMediaUrl} from "@/lib/utils";
+import {BadgeVariant} from "@/types/atoms";
 
-const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? 'http://localhost:1337';
 
 const CATEGORY_VARIANT: Record<string, BadgeVariant> = {
   'Dermatological':        'emerald',
@@ -31,25 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function InfoCard({ title, content, icon }: { title: string; content: string; icon: React.ReactNode }) {
-  return (
-    <div
-      className="rounded-2xl p-6 transition-all duration-200 bg-info-card border border-border shadow-card"
-    >
-      <div className="flex items-center gap-3 mb-3">
-        <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-botanical-icon text-accent"
-        >
-          {icon}
-        </div>
-        <h2 className="font-bold text-sm uppercase tracking-wider text-primary">{title}</h2>
-      </div>
-      <p className="text-sm leading-relaxed whitespace-pre-line text-secondary">{content}</p>
-    </div>
-  );
-}
-
-export default async function ProductDetailPage({ params }: Props) {
+export default async function ProductDetailPage({ params }: Readonly<Props>) {
   const { slug }  = await params;
   const product   = await getProductBySlug(slug);
 
@@ -62,10 +51,8 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const catVariant = category?.name ? (CATEGORY_VARIANT[category.name] ?? 'sky') : 'sky';
 
-  const rawImgUrl  = cover?.formats?.large?.url ?? cover?.formats?.medium?.url ?? cover?.url;
-  const coverImgUrl = rawImgUrl
-    ? (rawImgUrl.startsWith('http') ? rawImgUrl : `${BASE_URL}${rawImgUrl}`)
-    : null;
+  const rawImgUrl = cover?.formats?.large?.url ?? cover?.formats?.medium?.url ?? cover?.url;
+  const coverImgUrl = getStrapiMediaUrl(rawImgUrl);
 
   return (
     <div className="min-h-screen">
@@ -75,26 +62,14 @@ export default async function ProductDetailPage({ params }: Props) {
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back link */}
-          <Link
-            href="/products"
-            id="product-back-link"
-            className="inline-flex items-center gap-2 text-sm transition-colors mb-8 group text-muted hover:text-primary"
-          >
-            <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            All Products
-          </Link>
+          <BackLink href="/products" label="All Products" />
 
           {/* Badges */}
-          <div className="flex flex-wrap gap-2.5 mb-5">
-            {category?.name && <Badge variant={catVariant}>{category.name}</Badge>}
-            {isGeneric && <Badge variant="muted">Generic</Badge>}
-            <Badge variant="gold">
-              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
-              SABS Certified
-            </Badge>
-          </div>
+          <ProductBadges
+              categoryName={category?.name}
+              catVariant={catVariant}
+              isGeneric={isGeneric}
+          />
 
           {/* Product name */}
           <h1 className="font-display font-black text-5xl lg:text-6xl leading-tight mb-5 text-primary">
@@ -136,9 +111,7 @@ export default async function ProductDetailPage({ params }: Props) {
             title="Indication"
             content={indication}
             icon={
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+              <DocumentTextIcon className="w-4 h-4" />
             }
           />
 
@@ -147,22 +120,21 @@ export default async function ProductDetailPage({ params }: Props) {
             title="Active Ingredients"
             content={activeIngredients}
             icon={
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
+              <FlaskIcon className="w-4 h-4" />
             }
           />
+
 
           {/* Pharmacological Effects */}
           <InfoCard
             title="Pharmacological Effects"
             content={pharmacologicalEffects}
             icon={
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
+              <LightbulbIcon className="w-4 h-4" />
             }
           />
+
+
 
           {/* Expected Outcome */}
           {outcome && (
@@ -173,9 +145,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 <div
                   className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-botanical-icon text-accent"
                 >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
+                  <CheckIcon className="w-4 h-4" />
                 </div>
                 <h2 className="font-bold text-sm uppercase tracking-wider text-accent">Expected Outcome</h2>
               </div>
@@ -217,17 +187,7 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
 
         {/* Back CTA */}
-        <div className="mt-10">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 bg-pill border border-border text-secondary hover:border-border-hover hover:text-primary"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to all products
-          </Link>
-        </div>
+        <BackCta href="/products" label="Back to all products" />
       </section>
     </div>
   );
