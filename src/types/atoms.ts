@@ -7,8 +7,7 @@ export type BadgeVariant =
     | 'violet'
     | 'amber'
     | 'muted'
-    | 'sky'
-    | 'default';
+    | 'sky';
 
 export interface IconProps extends ComponentPropsWithRef<'svg'> {
     size?: number | string;

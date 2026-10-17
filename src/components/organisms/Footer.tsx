@@ -1,5 +1,6 @@
 'use client';
 
+import { CheckIcon } from "lucide-react";
 import Link from 'next/link';
 
 const productLinks = [
@@ -17,11 +18,6 @@ const companyLinks = [
   { href: '/products',    label: 'Product Catalog' },
 ];
 
-const CheckIcon = () => (
-  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-  </svg>
-);
 
 export function Footer() {
   return (
@@ -58,13 +54,13 @@ export function Footer() {
               <div
                 className="flex items-center gap-2 px-3 py-2 rounded-lg bg-cert-sabs border border-border-cert-sabs text-gold-text"
               >
-                <CheckIcon />
+                <CheckIcon className="w-3.5 h-3.5 shrink-0" />
                 <span className="text-xs font-medium text-secondary">SABS Certified</span>
               </div>
               <div
                 className="flex items-center gap-2 px-3 py-2 rounded-lg bg-cert-sahpra border border-border-cert-sahpra text-accent"
               >
-                <CheckIcon />
+                <CheckIcon className="w-3.5 h-3.5 shrink-0" />
                 <span className="text-xs font-medium text-secondary">SAHPRA Certified</span>
               </div>
             </div>
@@ -110,7 +106,7 @@ export function Footer() {
           className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-border"
         >
           <p className="text-sm text-muted">
-            © 2026 Koroma Biopharmaceuticals (Pty) Ltd. All rights reserved.
+            © {new Date().getFullYear()} Koroma Biopharmaceuticals (Pty) Ltd. All rights reserved.
           </p>
           <p className="text-xs italic text-subtle">Natural. Certified. Effective.</p>
         </div>

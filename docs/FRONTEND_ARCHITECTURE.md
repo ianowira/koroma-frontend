@@ -59,7 +59,7 @@ src/
 │   ├── atoms/
 │   │   ├── Badge.tsx           # Multi-variant pill badge (emerald, gold, indigo, violet, amber, muted)
 │   │   ├── Button.tsx          # Reusable styled button
-│   │   └── ThemeToggle.tsx     # Animated Sun/Moon theme toggle switch
+│   │   └── ThemeToggle.tsx     # Animated SunIcon/Moon theme toggle switch
 │   ├── molecules/
 │   │   ├── BotanicalTagList.tsx# Horizontal tag list for botanical ingredients
 │   │   └── ProductCard.tsx     # Product card featuring 16:9 photo cover, category badge, indicator summary

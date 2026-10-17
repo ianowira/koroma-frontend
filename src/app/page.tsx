@@ -1,30 +1,36 @@
 'use client';
 
+import {ChevronRight} from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { FlaskIcon } from "@/components/atoms/icons/FlaskIcon";
+import { HeartIcon } from "@/components/atoms/icons/HeartIcon";
+import { LightbulbIcon } from "@/components/atoms/icons/LightbulbIcon";
+import { SunIcon } from "@/components/atoms/icons/SunIcon";
 
 const CATEGORIES = [
   {
     id: 'derm', label: 'Dermatological',
-    icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1M4.22 4.22l.707.707m12.02 12.02.707.707M3 12h1m16 0h1M4.927 19.073l.707-.707M18.364 5.636l.707-.707M12 7a5 5 0 100 10A5 5 0 0012 7z" /></svg>,
+    icon: <SunIcon className="w-6 h-6" />,
     products: ['EmiGlow®', 'Fungizuia®'],
     desc: 'Advanced botanical skin solutions for inflammatory conditions, fungal infections, photo-ageing, and wound healing.',
   },
   {
     id: 'degen', label: 'Degenerative Diseases',
-    icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z" /></svg>,
+    icon: <HeartIcon className="w-6 h-6" />,
     products: ['Obellite®', 'Cardiollite®'],
     desc: 'Metabolic syndrome, anti-obesity, and cardiovascular formulations for chronic degenerative disease management.',
   },
   {
     id: 'supp', label: 'Supplements',
-    icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>,
+    icon: <LightbulbIcon className="w-6 h-6" />,
     products: ['Bone Broth'],
     desc: 'Nutritional support for convalescing patients and those managing chronic degenerative conditions.',
   },
   {
     id: 'gen', label: 'Generics',
-    icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>,
+    icon: <FlaskIcon className="w-6 h-6" />,
     products: ['Flublock®'],
     desc: 'Plant-based bioactive generic alternatives to common pharmaceutical medications.',
   },
@@ -87,7 +93,7 @@ export default function HomePage() {
             <div
               className="animate-fade-up inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full mb-8 text-sm font-medium bg-accent-bg border border-border-accent text-accent"
             >
-              <span className="w-2 h-2 rounded-full animate-pulse-dot bg-accent" />
+              <span className="w-2 h-2 rounded-full animate-pulse-dot bg-accent" />{" "}
               SABS &amp; SAHPRA Certified · South Africa
             </div>
 
@@ -116,9 +122,7 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-base transition-all duration-200 hover:-translate-y-0.5 bg-accent-btn text-on-accent shadow-accent-hero hover:bg-accent-btn-hover"
               >
                 Explore Products
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
+                <ChevronRight className="w-4 h-4" stroke="currentColor"  strokeWidth={2.5}/>
               </Link>
               <a
                 href="#about"
@@ -252,9 +256,7 @@ export default function HomePage() {
                   className="inline-flex items-center gap-1.5 mt-5 text-xs font-semibold transition-all duration-200 group-hover:gap-2.5 text-accent"
                 >
                   Explore
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
+                  <ChevronRight className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2.5} />
                 </div>
               </Link>
             ))}
@@ -278,9 +280,7 @@ export default function HomePage() {
               className="shrink-0 inline-flex items-center gap-2 text-sm font-semibold transition-colors text-accent hover:text-accent-hover"
             >
               View full catalog
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
+              <ChevronRight className="w-4 h-4" stroke="currentColor" strokeWidth={2.5} />
             </Link>
           </div>
 
@@ -320,9 +320,7 @@ export default function HomePage() {
                     className="mt-auto inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-medium transition-all duration-200 bg-cta-link border border-border-cta-link text-accent hover:bg-accent-bg hover:border-accent"
                   >
                     Learn More
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
+                    <ChevronRight className={"w-4 h-4"} stroke="currentColor" strokeWidth={2.5} />
                   </Link>
                 </div>
               </article>
@@ -442,9 +440,7 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-base transition-all duration-200 hover:-translate-y-0.5 bg-accent-btn text-on-accent shadow-accent-cta hover:bg-accent-btn-hover"
           >
             Browse Products
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            <ChevronRight className="w-5 h-5" stroke="currentColor" strokeWidth={2.5} />
           </Link>
         </div>
       </section>

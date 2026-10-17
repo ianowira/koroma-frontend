@@ -1,13 +1,14 @@
 'use client';
 
+import { ChevronRight } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Badge, BadgeVariant } from '@/components/atoms/Badge';
+import { Badge } from '@/components/atoms/Badge';
 import { BotanicalTagList } from '@/components/molecules/BotanicalTagList';
+import { getStrapiMediaUrl } from "@/lib/utils";
+import { BadgeVariant } from "@/types/atoms";
 import { Product } from '@/types/strapi';
-
-const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? 'http://localhost:1337';
 
 const CATEGORY_VARIANT: Record<string, BadgeVariant> = {
   'Dermatological':        'emerald',
@@ -21,15 +22,13 @@ const placeholderEmoji: Record<string, string> = {
   'Supplements': '🥣', 'Generics': '🧪',
 };
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({ product }: Readonly<{ product: Product }>) {
   const { name, slug, indication, category, botanicals, isGeneric, cover } = product;
   const catName    = category?.name;
   const catVariant = catName ? (CATEGORY_VARIANT[catName] ?? 'sky') : 'sky';
 
   const imgUrl     = cover?.formats?.medium?.url ?? cover?.url;
-  const fullImgUrl = imgUrl
-    ? (imgUrl.startsWith('http') ? imgUrl : `${BASE_URL}${imgUrl}`)
-    : null;
+  const fullImgUrl = getStrapiMediaUrl(imgUrl);
 
   return (
     <article
@@ -86,9 +85,7 @@ export function ProductCard({ product }: { product: Product }) {
           className="mt-auto inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-medium transition-all duration-200 bg-cta-link border border-border-cta-link text-accent hover:bg-accent-bg hover:border-accent"
         >
           View Details
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
+          <ChevronRight className="w-4 h-4 shrink-0" />
         </Link>
       </div>
     </article>
