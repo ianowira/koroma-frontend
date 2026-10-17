@@ -1,5 +1,6 @@
 'use client';
 
+import { FaceSlightlyFrowning, Search } from "lucide-react";
 import { useState, useMemo } from 'react';
 
 import { ProductCard } from '@/components/molecules/ProductCard';
@@ -7,14 +8,14 @@ import { Product } from '@/types/strapi';
 
 const ALL = 'All';
 
-export function ProductsFilter({ products }: { products: Product[] }) {
+export function ProductsFilter({ products }: Readonly<{ products: Product[] }>) {
   const [activeCategory, setActiveCategory] = useState(ALL);
   const [search, setSearch] = useState('');
 
   const categories = useMemo(() => {
     const cats = new Set<string>();
     products.forEach((p) => { if (p.category?.name) cats.add(p.category.name); });
-    return [ALL, ...Array.from(cats).sort()];
+    return [ALL, ...Array.from(cats).sort((a, b) => a.localeCompare(b))];
   }, [products]);
 
   const filtered = useMemo(
@@ -34,12 +35,7 @@ export function ProductsFilter({ products }: { products: Product[] }) {
       <div className="flex flex-col sm:flex-row gap-4 mb-10">
         {/* Search input */}
         <div className="relative max-w-xs w-full">
-          <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-muted"
-            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-          </svg>
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-muted" stroke="currentColor" strokeWidth={2} />
           <input
             id="products-search"
             type="search"
@@ -56,10 +52,11 @@ export function ProductsFilter({ products }: { products: Product[] }) {
             const isActive = activeCategory === cat;
             return (
               <button
+                type="button"
                 key={cat}
                 id={`filter-${cat.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border ${
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border cursor-pointer ${
                   isActive
                     ? 'bg-filter-active border-border-filter-active text-accent'
                     : 'bg-pill border-border text-secondary hover:border-border-hover'
@@ -85,15 +82,14 @@ export function ProductsFilter({ products }: { products: Product[] }) {
           <div
             className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5 bg-empty-icon border border-border"
           >
-            <svg className="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <FaceSlightlyFrowning className="w-7 h-7 text-muted" stroke="currentColor" strokeWidth={1.5} />
           </div>
           <p className="font-medium mb-1 text-secondary">No products found</p>
           {search && (
             <button
+              type="button"
               onClick={() => { setSearch(''); setActiveCategory(ALL); }}
-              className="mt-2 text-sm transition-colors text-accent hover:text-accent-hover"
+              className="mt-2 text-sm transition-colors text-accent hover:text-accent-hover cursor-pointer"
             >
               Clear filters
             </button>
